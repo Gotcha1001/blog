@@ -3,17 +3,14 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { api } from "@/convex/_generated/api";
 import { fetchQuery } from "convex/nextjs";
-import { cacheTag } from "next/cache";
+
 import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
-import { cacheLife } from "next/dist/server/use-cache/cache-life";
 
 import Image from "next/image";
 import Link from "next/link";
-import { connection } from "next/server";
-import { Suspense } from "react";
 
 // export const dynamic = "force-static";
-// export const revalidate = 30;
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: "My Blog",
@@ -42,9 +39,9 @@ export default function BlogPage() {
 }
 
 async function LoadBlogList() {
-  "use cache";
-  cacheLife("hours");
-  cacheTag("blog");
+  // "use cache";
+  // cacheLife("hours");
+  // cacheTag("blog");
   const data = await fetchQuery(api.posts.getPosts);
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
