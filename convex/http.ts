@@ -33,6 +33,8 @@ http.route({
 authComponent.registerRoutes(http, createAuth, {
   cors: {
     allowedOrigins: ["https://blog-wes-projects-3b3f8366.vercel.app"],
+    allowedHeaders: ["Content-Type", "Authorization", "Cookie"],
+    exposedHeaders: ["Set-Cookie"],
   },
 });
 
