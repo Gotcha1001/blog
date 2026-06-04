@@ -13,9 +13,8 @@ import { authComponent, createAuth } from "./auth";
 
 const http = httpRouter();
 
-// Handle CORS preflight requests
 http.route({
-  pathPrefix: "/api/auth",
+  pathPrefix: "/api/auth/",
   method: "OPTIONS",
   handler: httpAction(async (_, request) => {
     return new Response(null, {
