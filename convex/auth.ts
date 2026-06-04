@@ -52,7 +52,9 @@ import { components } from "./_generated/api";
 import { DataModel } from "./_generated/dataModel";
 import { query } from "./_generated/server";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL!;
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  "https://blog-wes-projects-3b3f8366.vercel.app";
 
 export const authComponent = createClient<DataModel>(components.betterAuth);
 
@@ -60,7 +62,11 @@ export const createAuthOptions = (
   ctx: GenericCtx<DataModel>,
 ): BetterAuthOptions => ({
   baseURL: siteUrl,
-  trustedOrigins: [siteUrl],
+  trustedOrigins: [
+    siteUrl,
+    "https://blog-wes-projects-3b3f8366.vercel.app",
+    "http://localhost:3000",
+  ],
   database: authComponent.adapter(ctx),
   emailAndPassword: {
     enabled: true,
