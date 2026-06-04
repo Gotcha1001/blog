@@ -48,7 +48,6 @@ import { convex } from "@convex-dev/better-auth/plugins";
 import { getAuthConfigProvider } from "@convex-dev/better-auth/auth-config";
 import type { GenericCtx } from "@convex-dev/better-auth/utils";
 import { betterAuth, type BetterAuthOptions } from "better-auth";
-import { dash } from "@better-auth/infra"; // 👈 add this
 import { components } from "./_generated/api";
 import { DataModel } from "./_generated/dataModel";
 import { query } from "./_generated/server";
@@ -73,7 +72,6 @@ export const createAuthOptions = (
         providers: [getAuthConfigProvider()],
       },
     }),
-    dash(), // 👈 add this
   ],
 });
 
