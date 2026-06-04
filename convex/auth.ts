@@ -52,7 +52,7 @@ import { components } from "./_generated/api";
 import { DataModel } from "./_generated/dataModel";
 import { query } from "./_generated/server";
 
-const siteUrl = process.env.SITE_URL!;
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL!;
 
 export const authComponent = createClient<DataModel>(components.betterAuth);
 
