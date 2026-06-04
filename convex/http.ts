@@ -16,7 +16,7 @@ const http = httpRouter();
 http.route({
   pathPrefix: "/api/auth/",
   method: "OPTIONS",
-  handler: httpAction(async (_, request) => {
+  handler: httpAction(async () => {
     return new Response(null, {
       status: 204,
       headers: {
@@ -30,6 +30,10 @@ http.route({
   }),
 });
 
-authComponent.registerRoutes(http, createAuth);
+authComponent.registerRoutes(http, createAuth, {
+  cors: {
+    allowedOrigins: ["https://blog-wes-projects-3b3f8366.vercel.app"],
+  },
+});
 
 export default http;
