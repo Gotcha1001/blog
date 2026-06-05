@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "canny-lark-671.convex.cloud",
       },
+      {
+        protocol: "https",
+        hostname: "rapid-falcon-211.convex.cloud", // 👈 production
+      },
     ],
   },
 };
