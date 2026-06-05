@@ -40,19 +40,18 @@ export default function LoginPage() {
 
   function onSubmit(data: SignUpFormData) {
     startTransition(async () => {
-      await authClient.signIn.email({
+      const { data: result, error } = await authClient.signIn.email({
         email: data.email,
         password: data.password,
-        fetchOptions: {
-          onSuccess: () => {
-            toast.success("Logged in successfully");
-            router.push("/");
-          },
-          onError: (error) => {
-            toast.error(error.error.message);
-          },
-        },
       });
+
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
+
+      toast.success("Logged in successfully");
+      router.push("/");
     });
   }
   return (

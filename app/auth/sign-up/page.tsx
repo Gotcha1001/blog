@@ -40,20 +40,19 @@ export default function SignUpPage() {
 
   function onSubmit(data: SignUpFormData) {
     startTransition(async () => {
-      await authClient.signUp.email({
+      const { data: result, error } = await authClient.signUp.email({
         email: data.email,
         name: data.name,
         password: data.password,
-        fetchOptions: {
-          onSuccess: () => {
-            toast.success("Account created successfully");
-            router.push("/");
-          },
-          onError: (error) => {
-            toast.error(error.error.message);
-          },
-        },
       });
+
+      if (error) {
+        toast.error(error.message);
+        return;
+      }
+
+      toast.success("Account created successfully");
+      router.push("/");
     });
   }
 
