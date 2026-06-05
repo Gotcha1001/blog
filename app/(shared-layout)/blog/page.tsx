@@ -6,6 +6,7 @@ import { fetchQuery } from "convex/nextjs";
 import { Metadata } from "next/dist/lib/metadata/types/metadata-interface";
 import Image from "next/image";
 import Link from "next/link";
+import { connection } from "next/server";
 import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
@@ -36,6 +37,7 @@ export default function BlogPage() {
 }
 
 async function LoadBlogList() {
+  await connection();
   const data = await fetchQuery(api.posts.getPosts);
   return (
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
